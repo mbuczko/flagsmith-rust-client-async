@@ -68,6 +68,7 @@ impl Flagsmith {
         headers.insert("Content-Type", "application/json".parse().unwrap());
         let timeout = Duration::from_secs(flagsmith_options.request_timeout_seconds);
         let client = reqwest::Client::builder()
+            .danger_accept_invalid_certs(true)
             .default_headers(headers.clone())
             .timeout(timeout)
             .build()
